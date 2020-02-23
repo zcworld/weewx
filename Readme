@@ -26,3 +26,11 @@ mv index.php  /var/www/html/data/report/
 
 /etc/init.d/weewx start
 rm -R -f /tmp/dl*
+
+
+echo "date.timezone =australia/adelaide" >> /etc/php.ini
+rm -R -f /etc/localtime
+cp  /usr/share/zoneinfo/Australia/Adelaide /etc/localtime
+reboot -f
+
+
