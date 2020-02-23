@@ -1,0 +1,28 @@
+this is a quick and simple install on centos 7 
+this will also download a copy of my weewx.conf file and settings i use for my device
+
+
+
+yum -y install openssh-server eple-release nano  wget  httpd unzip php
+
+wget http://www.weewx.com/downloads/weewx-3.9.2-1.rhel.noarch.rpm
+yum isntall weewx-3.9.2-1.rhel.noarch.rpm
+/etc/init.d/weewx stop
+
+
+
+wget https://github.com/iz0qwm/ecowitt_http_gateway/blob/master/weewx-ecowitt-1.1.tgz?raw=true
+wee_extension --install weewx-ecowitt-1.1.tgz\?raw\=true 
+
+mkdir /var/www/html/data/report -p
+mkdir -p /var/log/ecowitt
+chmod 777 /var/log/ecowitt
+
+cd /tmp
+wget https://raw.githubusercontent.com/zcworld/weewx/master/weewx.conf 
+rm -R -f /etc/weewx/weewx.conf 
+mv weewx.conf  /etc/weewx
+wget https://github.com/iz0qwm/ecowitt_http_gateway/archive/master.zip
+unzip master.zip
+cd ecowitt_http_gateway-master
+mv index.php  /var/www/html/data/report/
